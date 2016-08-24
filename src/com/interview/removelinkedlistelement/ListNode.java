@@ -1,6 +1,6 @@
-package com.interview.intersectionoftwolinkedlists;
+package com.interview.removelinkedlistelement;
 
- public class ListNode {
+public class ListNode {
 	      int val;
 	      ListNode next;
 	      ListNode(int x) { val = x; }

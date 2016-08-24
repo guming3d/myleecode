@@ -1,60 +1,61 @@
 package com.interview.guessnumber;
 
-import java.util.Random;
-import java.util.RandomAccess;
-
-/**
- * We are playing the Guess Game. The game is as follows:
-
-I pick a number from 1 to n. You have to guess which number I picked.
-
-Every time you guess wrong, I'll tell you whether the number is higher or lower.
-
-You call a pre-defined API guess(int num) which returns 3 possible results (-1, 1, or 0):
-
--1 : My number is lower
- 1 : My number is higher
- 0 : Congrats! You got it!
-Example:
-n = 10, I pick 6.
-
-Return 6.
- * @author mcgu
- *
- */
-
-/*
- * TODO: NOT FINISHED
- */
 public class Solution extends GuessGame {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Solution mysolution=new Solution();
-		int internalResult=mysolution.guessNumber(10);
-		System.out.println(internalResult);
+		Solution mySolution=new Solution();
+		System.out.println(mySolution.guessNumber(5));
 	}
-	
 	public  int guessNumber(int n) {
-		if(n==1)
-		{
-			return 1;
-		}
-		int start=1;
-		int end=n;
-		int middle=1 + (n-1)/2;
-		int tmp;
-		while((tmp=guess(middle))!=0)
-		{
-			if(tmp>0)
-			{
-				end=middle;
-			}else{
-				start=middle;
-			}
-			middle=start + (end-start)/2;
-		}
-		return middle;
-        
+        if(n==1)
+        {
+            return 1;
+        }
+        if(n==2)
+        {
+        	if(guess(1)==0)
+        	{
+        		return 1;
+        	}else{
+        		return 2;
+        	}
+        }
+        int lowNumber,highNumber;
+        lowNumber=1;
+        highNumber=n;
+ 
+        int tmpGuessNum=0;
+        int middle=lowNumber + (highNumber - lowNumber)/2;
+        while((tmpGuessNum=guess(middle))!=0)
+        {
+            if(tmpGuessNum==-1)
+            {
+            	if(highNumber==middle)
+            	{
+            		highNumber=middle-1;
+            	}else{
+            		highNumber=middle;	
+            	}
+            	
+            }else if(tmpGuessNum==1)
+            {
+            	if(lowNumber==middle)
+            	{
+            		lowNumber=middle+1;
+            	}else{
+            		lowNumber=middle;	
+            	}
+                
+            }
+            
+            if(lowNumber==highNumber)
+            {
+                return lowNumber;
+            }
+            middle=lowNumber + (highNumber - lowNumber)/2;
+        }
+//        System.out.println("");
+        return middle;
     }
 }

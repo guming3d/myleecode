@@ -1,4 +1,4 @@
-package com.interview.intersectionoftwolinkedlists;
+package com.interview.mergetwosortedlists;
 
  public class ListNode {
 	      int val;
